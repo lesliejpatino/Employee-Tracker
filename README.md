@@ -1,4 +1,4 @@
-# Employee-Tracker
+# Staff Management System
 
 ## Table of Contents
 * [Description](#description)
