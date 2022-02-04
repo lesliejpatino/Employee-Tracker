@@ -16,7 +16,7 @@ When the application is [run](#usage) the user is presented with a plethora of o
 ![Application](images/viewtable.png)
 <br />
 
-:movie_camera: [Click here to view a video that will walk you through the applications functionality.]()
+:movie_camera: [Click here to view a video that will walk you through the applications functionality.](https://drive.google.com/file/d/17jjWfC7OnDIhObflbNgBPvOBqtaAkdur/view)
 
 
 ## Link
