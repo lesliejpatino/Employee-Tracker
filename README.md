@@ -9,8 +9,7 @@
 * [License](#license)
 
 ## Description
-* The Staff Management System is a command-line application that is used to manage a company's employee database. Details about the [installation]() required are listed below. 
-<br /> 
+* The Staff Management System is a command-line application that is used to manage a company's employee database. Details about the [installation]() required are listed below.
 When the application is [run](#usage) the user is presented with a plethora of options that allow them to view tables directly in the console or make changes to the tables that have been created. 
 
 ## Demo
