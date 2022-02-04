@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const cTable = require('console.table');
 const mysql = require('mysql2');
 
+
 const db = mysql.createConnection(
     {
         host: 'localhost',
@@ -13,42 +14,64 @@ const db = mysql.createConnection(
     console.log(`Connected to the management_db database.`)
 );
 
+// A function that holds all of the options the user has to pick from
+const viewChoices = function() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "What would you like view next?",
+            name: "viewAll",
+            choices: [
+                "View All Departments",
+                "Add Department",
+                "View All Roles",
+                "Add Role",
+                "View All Employees",
+                "Add Employee",
+                "Update Employee Role",
+                "Quit"
+            ]
+        }
+    ]).then(answers => {
+        if (answers.viewAll === "View All Departments") {
+            allDeps();
+        } else if (
+            console.log('error')
+        );
+    })
+};
 
-// testing console.table method
-// db.query('SELECT * FROM department', function (err, results) {
-//     console.log(results);
-//     console.table(
-//         (results))
-// })
+viewChoices();
 
+// What will appear if the user selects "View All Departments" from the list of options
+const allDeps = (viewChoices) => {
+    db.query('SELECT * FROM department', function (err, results) {
+        console.log('DEPARTMENTS');
+        console.table((results));
+        whatNow();
+    })
+};
 
-// primary prompt 
-inquirer.prompt([
+// This will appear at the end of every table, asking the user if they would like to continue viewing tables. 
+const whatNow = function() {inquirer.prompt([
     {
         type: "list",
-        message: "What would you like to do next?",
-        name: "viewAll",
-        choices: [
-            "View All Departments",
-            "Add Department",
-            "View All Roles",
-            "Add Role",
-            "View All Employees",
-            "Add Employee",
-            "Update Employee Role",
-            "Quit"
+        message: "How would you like to proceed?",
+        name: "moreOrQuit",
+        choices: [ 
+            "SEE MORE",
+            "QUIT"
         ]
     }
-]).then(answers => {
-    if (answers.viewAll === "View All Departments") {
-        db.query('SELECT * FROM department', function (err, results) {
-            console.table(
-                (results))
-        })
+]).then (answers => {
+    if (answers.moreOrQuit === "SEE MORE") {
+        viewChoices();
     }
-});
-// See more or quit?
-
+    else {
+        console.log('Goodbye! Select Control+C to exit');
+    }
+})
+}
 
 
 
