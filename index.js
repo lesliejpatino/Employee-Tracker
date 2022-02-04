@@ -19,7 +19,7 @@ const viewChoices = function() {
     inquirer.prompt([
         {
             type: "list",
-            message: "What would you like view next?",
+            message: "What would you like to view next?",
             name: "viewAll",
             choices: [
                 "View All Departments",
@@ -61,6 +61,13 @@ const viewChoices = function() {
 
 viewChoices();
 
+
+// const addDept
+// db.query('UPDATE', function (err, results) {
+
+// }
+
+
 // THE FOLLOWING FUNCTIONS WILL RUN WHENEVER THE USER SELECTS AN OPTION THAT STARTS WITH "VIEW ALL"
 
 // If user selects "View All Departments"
@@ -101,15 +108,6 @@ const allEmployees = (viewChoices) => {
 
 
 
-
-
-
-
-
-
-
-
-
 // This will appear at the end of every response displayed to the user
 const whatNow = function() {inquirer.prompt([
     {
@@ -133,21 +131,7 @@ const whatNow = function() {inquirer.prompt([
 
 
 
-// DEPARTMENTS
-// (1, "Engineering"),
-// (2, "Employee Wellness"),
-// (3, "Finance"),
-// (4, "Creative Solutions"),
-// (5, "Consumer Products");
-
-
 // USER MUST BE PRESENTED WITH THE FOLLOWING OPTIONS: 
-
-// VIEW ALL DEPTS - displays formatted table showing department names and department ids
-
-// VIEW ALL ROLES - displays job title, role id, the department that role belongs to, and the salary for that role
-
-// VIEW ALL EMPLOYEES - displays formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
 
 // ADD DEPT - prompted to enter the name of the department and that department is added to the database
 
