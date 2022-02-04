@@ -35,15 +35,35 @@ const viewChoices = function() {
     ]).then(answers => {
         if (answers.viewAll === "View All Departments") {
             allDeps();
-        } else if (
-            console.log('error')
-        );
+        } else if (answers.viewAll === "Add Department") {
+
+        }
+        else if (answers.viewAll === "View All Roles") {
+            allRoles();
+        }
+        else if (answers.viewAll === "Add Role") {
+
+        }
+        else if (answers.viewAll === "View All Employees") {
+            allEmployees();
+        }
+        else if (answers.viewAll === "Add Employee") {
+
+        }
+        else if (answers.viewAll === "Update Employee Role") {
+
+        }
+        else {
+            console.log('Goodbye! Hit Ctrl+C to exit');
+        }
     })
 };
 
 viewChoices();
 
-// What will appear if the user selects "View All Departments" from the list of options
+// THE FOLLOWING FUNCTIONS WILL RUN WHENEVER THE USER SELECTS AN OPTION THAT STARTS WITH "VIEW ALL"
+
+// If user selects "View All Departments"
 const allDeps = (viewChoices) => {
     db.query('SELECT * FROM department', function (err, results) {
         console.log('DEPARTMENTS');
@@ -51,6 +71,35 @@ const allDeps = (viewChoices) => {
         whatNow();
     })
 };
+
+// If user selects "View All Roles"
+const allRoles = (viewChoices) => {
+    db.query('SELECT * FROM role', function (err, results) {
+        console.log('ROLES WITHIN THE COMPANY');
+        console.table((results));
+        whatNow();
+    })
+};
+
+// If user selects "View All Employees"
+const allEmployees = (viewChoices) => {
+    db.query('SELECT * FROM employee', function (err, results) {
+        console.log('EMPLOYEES');
+        console.table((results));
+        whatNow();
+    })
+};
+
+
+
+
+
+
+
+
+
+
+
 
 // This will appear at the end of every table, asking the user if they would like to continue viewing tables. 
 const whatNow = function() {inquirer.prompt([
@@ -68,7 +117,7 @@ const whatNow = function() {inquirer.prompt([
         viewChoices();
     }
     else {
-        console.log('Goodbye! Select Control+C to exit');
+        console.log('Goodbye! Hit Ctrl+C to exit');
     }
 })
 }
