@@ -2,22 +2,36 @@
 
 ## Table of Contents
 * [Description](#description)
-* [Link](#live-site)
+* [Link](#link)
 * [Installation](#installation)
+* [Usage](#usage)
 * [Author](#author)
 * [License](#license)
 
 ## Description
+* The Staff Management System is a command-line application that is used to manage a company's employee database. Details about the [installation]()required are listed below.
+ 
+When the application is [run](#usage) the user is presented with a plethora of options that entail either viewing tables directly in the console or making changes to the tables that have been created. 
 
-## Live Site
+![Application]()
+
+## Link
+* Link to the [Staff Management System Repo](https://github.com/lesliejpatino/Staff-Management-System)
 
 ## Installation
 The following dependencies will be needed in order for this application to work:
 * [Node.js](https://nodejs.org/en/)
 * [Node module - Inquirer](https://www.npmjs.com/package/inquirer)
 * [MySQL2](https://www.npmjs.com/package/mysql2)
-* [Console.Table](https://www.npmjs.com/package/console.table)
+* [Console-Table-Printer](https://www.npmjs.com/package/console-table-printer)
 
+## Usage
+Once the dependencies found under [Installation](#installation) are installed, the application can be run directly from the command line by typing:
+```
+node index.js
+```
+
+[Click here to view a video that will walk you through the applications functionality.]()
 
 ## Author
 Leslie Patino
