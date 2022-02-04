@@ -9,11 +9,16 @@
 * [License](#license)
 
 ## Description
-* The Staff Management System is a command-line application that is used to manage a company's employee database. Details about the [installation]()required are listed below.
- 
-When the application is [run](#usage) the user is presented with a plethora of options that entail either viewing tables directly in the console or making changes to the tables that have been created. 
+* The Staff Management System is a command-line application that is used to manage a company's employee database. Details about the [installation]() required are listed below. 
+<br /> 
+When the application is [run](#usage) the user is presented with a plethora of options that allow them to view tables directly in the console or make changes to the tables that have been created. 
 
-![Application]()
+## Demo
+![Application](images/viewtable.png)
+<br />
+
+:movie_camera: [Click here to view a video that will walk you through the applications functionality.]()
+
 
 ## Link
 * Link to the [Staff Management System Repo](https://github.com/lesliejpatino/Staff-Management-System)
@@ -30,8 +35,6 @@ Once the dependencies found under [Installation](#installation) are installed, t
 ```
 node index.js
 ```
-
-[Click here to view a video that will walk you through the applications functionality.]()
 
 ## Author
 Leslie Patino
