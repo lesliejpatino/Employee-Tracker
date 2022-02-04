@@ -1,7 +1,7 @@
 // require dependencies
 const inquirer = require('inquirer');
-const cTable = require('console.table');
 const mysql = require('mysql2');
+const { printTable } = require('console-table-printer');
 
 
 const db = mysql.createConnection(
@@ -67,7 +67,7 @@ viewChoices();
 const allDeps = (viewChoices) => {
     db.query('SELECT * FROM department', function (err, results) {
         console.log('DEPARTMENTS');
-        console.table((results));
+        printTable((results));
         whatNow();
     })
 };
@@ -76,7 +76,7 @@ const allDeps = (viewChoices) => {
 const allRoles = (viewChoices) => {
     db.query('SELECT * FROM role', function (err, results) {
         console.log('ROLES WITHIN THE COMPANY');
-        console.table((results));
+        printTable((results));
         whatNow();
     })
 };
@@ -85,7 +85,7 @@ const allRoles = (viewChoices) => {
 const allEmployees = (viewChoices) => {
     db.query('SELECT * FROM employee', function (err, results) {
         console.log('EMPLOYEES');
-        console.table((results));
+        printTable((results));
         whatNow();
     })
 };
@@ -101,7 +101,7 @@ const allEmployees = (viewChoices) => {
 
 
 
-// This will appear at the end of every table, asking the user if they would like to continue viewing tables. 
+// This will appear at the end of every response displayed to the user
 const whatNow = function() {inquirer.prompt([
     {
         type: "list",
