@@ -66,7 +66,10 @@ viewChoices();
 // If user selects "View All Departments"
 const allDeps = (viewChoices) => {
     db.query('SELECT * FROM department', function (err, results) {
-        console.log('DEPARTMENTS');
+        console.log('___________________________');
+        console.log('                           ');
+        console.log('        DEPARTMENTS');
+        console.log('___________________________');
         printTable((results));
         whatNow();
     })
@@ -75,7 +78,10 @@ const allDeps = (viewChoices) => {
 // If user selects "View All Roles"
 const allRoles = (viewChoices) => {
     db.query('SELECT * FROM role', function (err, results) {
-        console.log('ROLES WITHIN THE COMPANY');
+        console.log('                 ___________________________ ');
+        console.log('                                             ');
+        console.log('                  ROLES WITHIN THE COMPANY   ');
+        console.log('                 ___________________________ ');
         printTable((results));
         whatNow();
     })
@@ -84,7 +90,10 @@ const allRoles = (viewChoices) => {
 // If user selects "View All Employees"
 const allEmployees = (viewChoices) => {
     db.query('SELECT * FROM employee', function (err, results) {
-        console.log('EMPLOYEES');
+        console.log('              ___________________________');
+        console.log('                                         ');
+        console.log('                       EMPLOYEES');
+        console.log('              ___________________________');
         printTable((results));
         whatNow();
     })
