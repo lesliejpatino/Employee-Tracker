@@ -5,33 +5,50 @@ const mysql = require('mysql2');
 
 const db = mysql.createConnection(
     {
-      host: 'localhost',
-      user: 'root',
-      password: 'password',
-      database: 'management_db'
+        host: 'localhost',
+        user: 'root',
+        password: 'password',
+        database: 'management_db'
     },
     console.log(`Connected to the management_db database.`)
-  );
+);
 
 
+// testing console.table method
+// db.query('SELECT * FROM department', function (err, results) {
+//     console.log(results);
+//     console.table(
+//         (results))
+// })
+
+
+// primary prompt 
 inquirer.prompt([
     {
         type: "list",
         message: "What would you like to do next?",
-        name: "nextAction",
+        name: "viewAll",
         choices: [
             "View All Departments",
             "Add Department",
             "View All Roles",
             "Add Role",
-            "View All Employees", 
+            "View All Employees",
             "Add Employee",
             "Update Employee Role",
             "Quit"
         ]
     }
-]).then()
-;
+]).then(answers => {
+    if (answers.viewAll === "View All Departments") {
+        db.query('SELECT * FROM department', function (err, results) {
+            console.table(
+                (results))
+        })
+    }
+});
+// See more or quit?
+
 
 
 
