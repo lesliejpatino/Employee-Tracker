@@ -28,8 +28,8 @@ const viewChoices = function() {
                 "Add Role",
                 "View All Employees",
                 "Add Employee",
-                "Update Employee Role",
-                "Delete Employee Role",
+                "Update Employee",
+                "Delete Employee",
                 "Quit"
             ]
         }
@@ -52,10 +52,10 @@ const viewChoices = function() {
         else if (answers.viewAll === "Add Employee") {
 
         }
-        else if (answers.viewAll === "Update Employee Role") {
-
+        else if (answers.viewAll === "Update Employee") {
+            updateEmployee();
         } 
-        else if (answers.viewAll === "Delete Employee Role") {
+        else if (answers.viewAll === "Delete Employee") {
             deleteRole();
         }
         else {
@@ -113,109 +113,172 @@ const allEmployees = (viewChoices) => {
 
 // THE FOLLOWING FUNCTIONS WILL RUN WHENEVER THE USER SELECTS AN OPTION THAT STARTS WITH "Add"
 // If user selects "Add Role" 
-// addRole = () => {
-//     inquirer.prompt([
-//       {
-//         type: 'input', 
-//         name: 'role',
-//         message: "What role do you want to add?"
-//       },
-//       {
-//         type: 'input', 
-//         name: 'salary',
-//         message: "What is the salary of this role?"
-//       }
-//     ])
-//       .then(answer => {
-//       const params = [answer.role, answer.salary];
+addRole = () => {
+    inquirer.prompt([
+      {
+        type: 'input', 
+        name: 'role',
+        message: "What role do you want to add?"
+      },
+      {
+        type: 'input', 
+        name: 'salary',
+        message: "What is the salary of this role?"
+      }
+    ])
+      .then(answer => {
+      const params = [answer.role, answer.salary];
   
-//       // grab dept from department table
-//       const roleSql = `SELECT name, id FROM department`; 
+      // grab dept from department table
+      const roleSql = `SELECT name, id FROM department`; 
   
-//       db.promise().query(roleSql, (err, data) => {
-//         if (err) throw err; 
+      db.promise().query(roleSql, (err, data) => {
+        if (err) throw err; 
     
-//         const dept = data.map(({ name, id }) => ({ name: name, value: id }));
+        const dept = data.map(({ name, id }) => ({ name: name, value: id }));
   
-//         inquirer.prompt([
-//         {
-//           type: 'list', 
-//           name: 'dept',
-//           message: "What department is this role in?",
-//           choices: dept
-//         }
-//         ])
-//           .then(deptChoice => {
-//           const dept = deptChoice.dept;
-//           params.push(dept);
+        inquirer.prompt([
+        {
+          type: 'list', 
+          name: 'dept',
+          message: "What department is this role in?",
+          choices: dept
+        }
+        ])
+          .then(deptChoice => {
+          const dept = deptChoice.dept;
+          params.push(dept);
   
-//           const sql = `INSERT INTO role (title, salary, department_id)
-//                       VALUES (?, ?, ?)`;
+          const sql = `INSERT INTO role (title, salary, department_id)
+                      VALUES (?, ?, ?)`;
   
-//           db.query(sql, params, (err, result) => {
-//             if (err) throw err;
-//             console.log('Added' + answer.role + " to roles!"); 
+          db.query(sql, params, (err, result) => {
+            if (err) throw err;
+            console.log('Added' + answer.role + " to roles!"); 
   
-//             allRoles();
-//          });
-//        });
-//      });
-//    });
-//   };
+            allRoles();
+         });
+       });
+     });
+   });
+  };
 
   
 // If user selects "Add a Department"
-// addDepartment = () => {
-//     inquirer.prompt([
-//       {
-//         type: 'input', 
-//         name: 'addDept',
-//         message: "What department would you like to add?"
-//       }
-//     ])
-//       .then(answer => {
-//         const sql = `INSERT INTO department (name)
-//                     VALUES (?)`;
-//         db.query(sql, answer.addDept, (err, result) => {
-//           console.log('Added ' + answer.addDept + " to departments!"); 
-//           if (err) throw err;
-//           allDeps();
-//       });
-//     });
-//   };
+addDepartment = () => {
+    inquirer.prompt([
+      {
+        type: 'input', 
+        name: 'addDept',
+        message: "What department would you like to add?"
+      }
+    ])
+      .then(answer => {
+        const sql = `INSERT INTO department (name)
+                    VALUES (?)`;
+        db.query(sql, answer.addDept, (err, result) => {
+          console.log('Added ' + answer.addDept + " to departments!"); 
+          if (err) throw err;
+          allDeps();
+      });
+    });
+  };
 
 // If user selects "Delete a Role"
-// deleteRole = () => {
-//     const roleSql = `SELECT * FROM role`; 
+deleteRole = () => {
+    const roleSql = `SELECT * FROM role`; 
   
-//     db.promise().query(roleSql, (err, data) => {
-//       if (err) throw err; 
+    db.promise().query(roleSql, (err, data) => {
+      if (err) throw err; 
   
-//       const role = data.map(({ title, id }) => ({ name: title, value: id }));
+      const role = data.map(({ title, id }) => ({ name: title, value: id }));
   
-//       inquirer.prompt([
-//         {
-//           type: 'list', 
-//           name: 'role',
-//           message: "What role do you want to delete?",
-//           choices: role
-//         }
-//       ])
-//         .then(roleChoice => {
-//         const role = roleChoice.role;
-//         const sql = `DELETE FROM role WHERE id = ?`;
+      inquirer.prompt([
+        {
+          type: 'list', 
+          name: 'role',
+          message: "What role do you want to delete?",
+          choices: role
+        }
+      ])
+        .then(roleChoice => {
+        const role = roleChoice.role;
+        const sql = `DELETE FROM role WHERE id = ?`;
   
-//         db.query(sql, role, (err, result) => {
-//           if (err) throw err;
-//           console.log("Successfully deleted!"); 
+        db.query(sql, role, (err, result) => {
+          if (err) throw err;
+          console.log("Successfully deleted!"); 
   
-//           allRoles();
-//         });
-//       });
-//     });
-//   };
+          allRoles();
+        });
+      });
+    });
+  };
 
 
+// If user selects "Update Employee" 
+updateEmployee = () => {
+    // get employees from employee table 
+    const employeeSql = `SELECT * FROM employee`;
+  
+    db.promise().query(employeeSql, (err, data) => {
+      if (err) throw err; 
+  
+    const employees = data.map(({ id, first_name, last_name }) => ({ name: first_name + " "+ last_name, value: id }));
+  
+      inquirer.prompt([
+        {
+          type: 'list',
+          name: 'name',
+          message: "Which employee would you like to update?",
+          choices: employees
+        }
+      ])
+        .then(empChoice => {
+        const employee = empChoice.name;
+        const params = []; 
+        params.push(employee);
+  
+        const roleSql = `SELECT * FROM role`;
+  
+        db.promise().query(roleSql, (err, data) => {
+          if (err) throw err; 
+  
+          const roles = data.map(({ id, title }) => ({ name: title, value: id }));
+          
+            inquirer.prompt([
+              {
+                type: 'list',
+                name: 'role',
+                message: "What is the employee's new role?",
+                choices: roles
+              }
+            ])
+                .then(roleChoice => {
+                const role = roleChoice.role;
+                params.push(role); 
+                
+                let employee = params[0]
+                params[0] = role
+                params[1] = employee 
+                
+  
+                console.log(params)
+  
+                const sql = `UPDATE employee SET role_id = ? WHERE id = ?`;
+  
+                db.query(sql, params, (err, result) => {
+                  if (err) throw err;
+                console.log("Employee has been updated!");
+              
+                allEmployees();
+            });
+          });
+        });
+      });
+    });
+  };
+  
 
 
 
@@ -240,16 +303,3 @@ const whatNow = function() {inquirer.prompt([
     }
 })
 }
-
-
-
-// USER MUST BE PRESENTED WITH THE FOLLOWING OPTIONS: 
-
-// ADD DEPT - prompted to enter the name of the department and that department is added to the database
-
-// ADD ROLE - prompted to enter the name, salary, and department for the role and that role is added to the database
-
-// ADD EMPLOYEE - prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-
-// UPDATE EMPLOYEE ROLE - prompted to select an employee to update and their new role and this information is updated in the database
-
