@@ -29,20 +29,22 @@ const viewChoices = function() {
                 "View All Employees",
                 "Add Employee",
                 "Update Employee Role",
+                "Delete Employee Role",
                 "Quit"
             ]
         }
     ]).then(answers => {
         if (answers.viewAll === "View All Departments") {
             allDeps();
-        } else if (answers.viewAll === "Add Department") {
-
+        } 
+        else if (answers.viewAll === "Add Department") {
+            addDepartment();
         }
         else if (answers.viewAll === "View All Roles") {
             allRoles();
         }
         else if (answers.viewAll === "Add Role") {
-
+            addRole();
         }
         else if (answers.viewAll === "View All Employees") {
             allEmployees();
@@ -52,6 +54,9 @@ const viewChoices = function() {
         }
         else if (answers.viewAll === "Update Employee Role") {
 
+        } 
+        else if (answers.viewAll === "Delete Employee Role") {
+            deleteRole();
         }
         else {
             console.log('Goodbye! Hit Ctrl+C to exit');
@@ -105,6 +110,113 @@ const allEmployees = (viewChoices) => {
         whatNow();
     })
 };
+
+// THE FOLLOWING FUNCTIONS WILL RUN WHENEVER THE USER SELECTS AN OPTION THAT STARTS WITH "Add"
+// If user selects "Add Role" 
+// addRole = () => {
+//     inquirer.prompt([
+//       {
+//         type: 'input', 
+//         name: 'role',
+//         message: "What role do you want to add?"
+//       },
+//       {
+//         type: 'input', 
+//         name: 'salary',
+//         message: "What is the salary of this role?"
+//       }
+//     ])
+//       .then(answer => {
+//       const params = [answer.role, answer.salary];
+  
+//       // grab dept from department table
+//       const roleSql = `SELECT name, id FROM department`; 
+  
+//       db.promise().query(roleSql, (err, data) => {
+//         if (err) throw err; 
+    
+//         const dept = data.map(({ name, id }) => ({ name: name, value: id }));
+  
+//         inquirer.prompt([
+//         {
+//           type: 'list', 
+//           name: 'dept',
+//           message: "What department is this role in?",
+//           choices: dept
+//         }
+//         ])
+//           .then(deptChoice => {
+//           const dept = deptChoice.dept;
+//           params.push(dept);
+  
+//           const sql = `INSERT INTO role (title, salary, department_id)
+//                       VALUES (?, ?, ?)`;
+  
+//           db.query(sql, params, (err, result) => {
+//             if (err) throw err;
+//             console.log('Added' + answer.role + " to roles!"); 
+  
+//             allRoles();
+//          });
+//        });
+//      });
+//    });
+//   };
+
+  
+// If user selects "Add a Department"
+// addDepartment = () => {
+//     inquirer.prompt([
+//       {
+//         type: 'input', 
+//         name: 'addDept',
+//         message: "What department would you like to add?"
+//       }
+//     ])
+//       .then(answer => {
+//         const sql = `INSERT INTO department (name)
+//                     VALUES (?)`;
+//         db.query(sql, answer.addDept, (err, result) => {
+//           console.log('Added ' + answer.addDept + " to departments!"); 
+//           if (err) throw err;
+//           allDeps();
+//       });
+//     });
+//   };
+
+// If user selects "Delete a Role"
+// deleteRole = () => {
+//     const roleSql = `SELECT * FROM role`; 
+  
+//     db.promise().query(roleSql, (err, data) => {
+//       if (err) throw err; 
+  
+//       const role = data.map(({ title, id }) => ({ name: title, value: id }));
+  
+//       inquirer.prompt([
+//         {
+//           type: 'list', 
+//           name: 'role',
+//           message: "What role do you want to delete?",
+//           choices: role
+//         }
+//       ])
+//         .then(roleChoice => {
+//         const role = roleChoice.role;
+//         const sql = `DELETE FROM role WHERE id = ?`;
+  
+//         db.query(sql, role, (err, result) => {
+//           if (err) throw err;
+//           console.log("Successfully deleted!"); 
+  
+//           allRoles();
+//         });
+//       });
+//     });
+//   };
+
+
+
 
 
 
